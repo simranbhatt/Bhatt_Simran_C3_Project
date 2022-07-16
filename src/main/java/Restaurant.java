@@ -60,7 +60,14 @@ public class Restaurant {
                 +"Menu:"+"\n"+getMenu());
 
     }
-
+    public double getTotalCost(List<String> items) {
+        double cost = 0.0;
+        for (String item : items) {
+            Item selectedItem = menu.stream().filter(menuItem -> item.equals(menuItem.getName())).findAny().orElse(null);
+            cost += selectedItem != null ? selectedItem.getPrice() : 0;
+        }
+        return cost;
+    }
     public String getName() {
         return name;
     }
